@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>YOU'VE BEEN HACKED</title>
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body class="hacked">
+  <div class="container">
+    <h1 class="blink">⚠️ MALWARE BREACH DETECTED ⚠️</h1>
+    <div id="terminal">
+      <p>> IP Address: <span id="user-ip">Detecting...</span></p>
+      <p>> Location: <span id="user-location">Locating...</span></p>
+      <p>> Device Info: <span id="user-device">Gathering...</span></p>
+      <p>> Webcam access: <span class="blink">ENABLED</span></p>
+
+      <div id="progress-bar">
+        <div id="progress"></div>
+      </div>
+      <p id="status">Stealing data: 0%</p>
+
+      <h2 class="blink">ALL YOUR FILES ARE BEING COPIED</h2>
+      <p>We now have access to:</p>
+      <ul>
+        <li>Bank Accounts</li>
+        <li>Email Passwords</li>
+        <li>Device Camera/Mic</li>
+        <li>Social Media</li>
+      </ul>
+
+      <p class="countdown">Device Wipe in <span id="countdown">60</span> seconds</p>
+    </div>
+  </div>
+  <audio id="alert-sound" loop autoplay>
+    <source src="https://assets.mixkit.co/sfx/preview/mixkit-alarm-digital-clock-beep-989.mp3" type="audio/mpeg">
+  </audio>
+  <script src="assets/script.js"></script>
+</body>
+</html>
