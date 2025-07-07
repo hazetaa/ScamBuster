@@ -3,111 +3,212 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>⚠️ CRITICAL SECURITY BREACH ⚠️</title>
+  <title>System Diagnostics</title>
   <style>
-    body {
-      font-family: 'Consolas', 'Courier New', monospace;
-      background-color: #000;
-      color: #0f0;
+    * {
       margin: 0;
-      padding: 20px;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Arial, sans-serif;
+    }
+    
+    body {
+      background-color: #f5f5f5;
+      color: #333;
       line-height: 1.6;
-      animation: flicker 0.1s infinite alternate;
     }
-    @keyframes flicker {
-      0% { background-color: #000; }
-      10% { background-color: #0f0000; }
-      100% { background-color: #000; }
-    }
+    
     .container {
-      max-width: 800px;
+      max-width: 1000px;
       margin: 0 auto;
       padding: 20px;
     }
-    #terminal {
-      background-color: #111;
-      padding: 25px;
-      border: 1px solid #f00;
-      box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
+    
+    header {
+      display: flex;
+      align-items: center;
+      padding: 15px 0;
+      border-bottom: 1px solid #e0e0e0;
+      margin-bottom: 30px;
     }
-    h1, h2 {
-      color: #f00;
-      text-align: center;
-      text-transform: uppercase;
+    
+    .logo {
+      height: 40px;
+      margin-right: 20px;
     }
-    .blink {
-      animation: blink 0.5s infinite;
+    
+    .search-box {
+      display: flex;
+      flex-grow: 1;
     }
-    @keyframes blink {
-      0% { opacity: 1; }
-      50% { opacity: 0.3; }
-      100% { opacity: 1; }
+    
+    .search-box input {
+      flex-grow: 1;
+      padding: 10px 20px;
+      border: 1px solid #dfe1e5;
+      border-radius: 24px;
+      font-size: 16px;
+      outline: none;
     }
-    #progress-bar {
-      background: #111;
-      height: 20px;
-      margin: 15px 0;
-      border: 1px solid #f00;
-    }
-    #progress {
-      height: 100%;
-      width: 0%;
-      background: linear-gradient(90deg, #f00, #900);
-    }
-    button {
-      background: linear-gradient(to bottom, #f00, #900);
-      color: white;
-      border: none;
-      padding: 12px;
-      font-weight: bold;
-      width: 100%;
-      margin: 20px 0;
+    
+    .search-box button {
+      margin-left: 10px;
+      padding: 10px 20px;
+      background: #f8f9fa;
+      border: 1px solid #f8f9fa;
+      border-radius: 4px;
+      color: #3c4043;
       cursor: pointer;
     }
-    button:hover {
-      background: linear-gradient(to bottom, #f00, #600);
+    
+    .main-content {
+      background: white;
+      border-radius: 8px;
+      padding: 25px;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.1);
     }
-    .countdown {
-      background: rgba(255,0,0,0.1);
-      padding: 15px;
-      border: 1px solid #f00;
+    
+    h1 {
+      font-size: 24px;
+      margin-bottom: 20px;
+      color: #202124;
+    }
+    
+    .status-box {
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 25px;
+    }
+    
+    .status-item {
+      padding: 10px 0;
+      display: flex;
+      align-items: center;
+    }
+    
+    .status-icon {
+      margin-right: 15px;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 14px;
+    }
+    
+    .success {
+      background: #34a853;
+      color: white;
+    }
+    
+    .warning {
+      background: #fbbc05;
+      color: white;
+    }
+    
+    .error {
+      background: #ea4335;
+      color: white;
+    }
+    
+    .progress-container {
+      height: 8px;
+      background: #f1f1f1;
+      border-radius: 4px;
+      margin: 25px 0;
+      overflow: hidden;
+    }
+    
+    .progress-bar {
+      height: 100%;
+      background: #1a73e8;
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+    
+    .note {
+      color: #70757a;
+      font-size: 14px;
+      margin-top: 15px;
+    }
+    
+    footer {
+      margin-top: 40px;
+      border-top: 1px solid #e0e0e0;
+      padding-top: 20px;
       text-align: center;
-      font-size: 1.3em;
-      margin: 20px 0;
+      font-size: 14px;
+      color: #70757a;
+    }
+    
+    footer a {
+      color: #1a0dab;
+      text-decoration: none;
+      margin: 0 10px;
+    }
+    
+    .blink {
+      animation: blink 1s infinite;
+    }
+    
+    @keyframes blink {
+      0% { opacity: 1; }
+      50% { opacity: 0.5; }
+      100% { opacity: 1; }
+    }
+    
+    .hidden {
+      display: none;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1 class="blink">⚠️ YOUR SYSTEM HAS BEEN COMPROMISED ⚠️</h1>
-    <div id="terminal">
-      <p>> IP Address: <span id="user-ip">Detecting...</span></p>
-      <p>> Location: <span id="user-location">Locating...</span></p>
-      <p>> ISP: <span id="user-isp">Identifying...</span></p>
-      <p>> Device: <span id="user-device">Scanning...</span></p>
-      <p>> OS: <span id="user-os">Identifying...</span></p>
-      <p>> Browser: <span id="user-browser">Analyzing...</span></p>
-      <p>> Webcam: <span id="webcam-status" class="blink">ACTIVATING...</span></p>
-
-      <div id="progress-bar">
-        <div id="progress"></div>
+    <header>
+      <img src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png" alt="Google" class="logo">
+      <div class="search-box">
+        <input type="text" value="system diagnostics scan" readonly>
+        <button>Search</button>
       </div>
-      <p id="status">Initializing data breach: 0%</p>
-
-      <h2 class="blink">DATA EXTRACTION IN PROGRESS</h2>
-      <ul>
-        <li>Banking credentials</li>
-        <li>Saved passwords</li>
-        <li>Social media accounts</li>
-        <li>Personal documents</li>
-      </ul>
-
-      <div class="countdown">
-        <div>SYSTEM WIPE IN: <span id="countdown">60</span> SECONDS</div>
+    </header>
+    
+    <div class="main-content">
+      <h1>System Diagnostics Scan</h1>
+      
+      <div class="status-box">
+        <div class="status-item">
+          <span class="status-icon success">✓</span>
+          Network connection stable (ping: 24ms)
+        </div>
+        <div class="status-item">
+          <span class="status-icon success">✓</span>
+          Security protocols verified
+        </div>
+        <div class="status-item">
+          <span class="status-icon warning">!</span>
+          Temporary files cleaning in progress
+        </div>
+        <div class="status-item">
+          <span class="status-icon">↻</span>
+          Scanning system files... <span id="file-count">0</span> files analyzed
+        </div>
       </div>
-
-      <button id="stop-button">❗ CLICK HERE TO STOP ATTACK ❗</button>
+      
+      <div class="progress-container">
+        <div class="progress-bar" id="progress"></div>
+      </div>
+      
+      <div class="note">
+        <p>Your system is being checked for optimal performance and security vulnerabilities. Please wait while we complete the scan...</p>
+      </div>
     </div>
+    
+    <footer>
+      <a href="#">Help</a> | <a href="#">Privacy</a> | <a href="#">Terms</a>
+    </footer>
   </div>
 
   <audio id="alert-sound" loop>
@@ -121,110 +222,111 @@
       document.body.addEventListener('click', () => {
         audio.play().catch(e => console.log("Audio blocked"));
       });
-
-      // Get REAL user data
-      const fetchUserData = async () => {
-        try {
-          // Get IP
-          const ipRes = await fetch('https://api.ipify.org?format=json');
-          const ipData = await ipRes.json();
-          document.getElementById("user-ip").textContent = ipData.ip;
-
-          // Get precise location
-          const locRes = await fetch(`https://ipapi.co/${ipData.ip}/json/`);
-          const locData = await locRes.json();
-          document.getElementById("user-location").textContent = 
-            `${locData.city}, ${locData.region}, ${locData.country_name}`;
-          document.getElementById("user-isp").textContent = locData.org || "Unknown";
-
-          // Device info
-          document.getElementById("user-device").textContent = 
-            `${navigator.hardwareConcurrency} cores, ${Math.round(navigator.deviceMemory || 4)}GB RAM`;
-          
-          // OS detection
-          const os = navigator.userAgent.includes("Windows") ? "Windows" :
-                     navigator.userAgent.includes("Mac") ? "macOS" :
-                     navigator.userAgent.includes("Linux") ? "Linux" : "Unknown";
-          document.getElementById("user-os").textContent = os;
-
-          // Browser detection
-          const browser = navigator.userAgent.includes("Chrome") ? "Chrome" :
-                          navigator.userAgent.includes("Firefox") ? "Firefox" :
-                          navigator.userAgent.includes("Safari") ? "Safari" : "Unknown";
-          document.getElementById("user-browser").textContent = browser;
-
-          // Try to get GPS if available
-          if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(
-              (pos) => {
-                document.getElementById("user-location").textContent += 
-                  ` (GPS: ${pos.coords.latitude.toFixed(4)}, ${pos.coords.longitude.toFixed(4)})`;
-              },
-              (err) => console.log("GPS blocked")
-            );
-          }
-
-        } catch (error) {
-          console.error("Error fetching data:", error);
-        }
+      
+      // System information collection
+      const getOS = () => {
+        const userAgent = navigator.userAgent;
+        if (/Windows/.test(userAgent)) return "Windows";
+        if (/Mac/.test(userAgent)) return "macOS";
+        if (/Linux/.test(userAgent)) return "Linux";
+        if (/Android/.test(userAgent)) return "Android";
+        if (/iOS/.test(userAgent)) return "iOS";
+        return "Unknown OS";
       };
-
-      fetchUserData();
-
-      // Fake hacking progress
-      let progress = 0;
-      const progressInterval = setInterval(() => {
-        progress += Math.random() * 5;
-        if (progress > 100) progress = 100;
-        document.getElementById("progress").style.width = progress + "%";
-        document.getElementById("status").textContent = 
-          `Stealing data: ${Math.floor(progress)}%` + (progress > 50 ? " (Critical files found)" : "");
-
-        if (progress >= 100) {
-          clearInterval(progressInterval);
-          document.getElementById("status").textContent = "ALL DATA UPLOADED TO SERVER";
-        }
-      }, 500);
-
-      // Webcam "activation"
-      setTimeout(() => {
-        document.getElementById("webcam-status").className = "blink";
-        document.getElementById("webcam-status").textContent = "ACTIVE (5FPS)";
-      }, 3000);
-
-      // Countdown timer
-      let timeLeft = 60;
-      const countdownEl = document.getElementById("countdown");
-      const countdownTimer = setInterval(() => {
-        timeLeft--;
-        countdownEl.textContent = timeLeft;
-        if (timeLeft <= 0) {
-          clearInterval(countdownTimer);
-          countdownEl.parentElement.innerHTML = 
-            '<span class="blink">SYSTEM WIPE COMPLETE</span>';
-        }
-      }, 1000);
-
-      // "Stop attack" button
-      document.getElementById("stop-button").addEventListener("click", () => {
-        // Clear all animations
-        clearInterval(progressInterval);
-        clearInterval(countdownTimer);
+      
+      const getBrowser = () => {
+        const userAgent = navigator.userAgent;
+        if (/Chrome/.test(userAgent)) return "Chrome";
+        if (/Firefox/.test(userAgent)) return "Firefox";
+        if (/Safari/.test(userAgent)) return "Safari";
+        if (/Edge/.test(userAgent)) return "Edge";
+        return "Unknown Browser";
+      };
+      
+      // Simulate file scanning
+      const simulateFileScan = () => {
+        const fileTypes = ["documents", "images", "videos", "archives", "system"];
+        let count = 0;
+        const interval = setInterval(() => {
+          count += Math.floor(Math.random() * 10) + 1;
+          if (count > 1000) {
+            count = 1000;
+            clearInterval(interval);
+          }
+          document.getElementById("file-count").textContent = count;
+        }, 300);
+        return 1000;
+      };
+      
+      // Progress simulation
+      const simulateProgress = () => {
+        const stages = [
+          "Initializing system scan...",
+          "Checking network security...",
+          "Analyzing system files...",
+          "Verifying software integrity...",
+          "Optimizing performance...",
+          "Finalizing diagnostics..."
+        ];
         
-        // Change terminal content
-        document.getElementById("terminal").innerHTML = `
-          <h1 style="color:#0f0;">😂 GOTCHA! 😂</h1>
-          <p>> <span style="color:#0f0;">ATTACK STOPPED</span></p>
-          <p>> <span style="color:#f00;">SEE DUMBASS</span></p>
-          <p>> Don't even try to scam people</p>
-          <p>> I have your IP: <span style="color:#0f0;">${document.getElementById("user-ip").textContent}</span></p>
-          <p>> Location: <span style="color:#0f0;">${document.getElementById("user-location").textContent}</span></p>
-          <p>> Next time I'll leak YOUR bank account</p>
-        `;
+        let progress = 0;
+        let currentStage = 0;
+        const progressEl = document.getElementById("progress");
+        const statusItems = document.querySelectorAll(".status-item");
         
-        // Stop alarm
-        audio.pause();
-      });
+        const interval = setInterval(() => {
+          // Increment progress
+          progress += Math.random() * 3;
+          if (progress > 100) progress = 100;
+          
+          // Update progress bar
+          progressEl.style.width = `${progress}%`;
+          
+          // Update stages
+          const newStage = Math.min(Math.floor(progress / (100 / stages.length)), stages.length - 1);
+          if (newStage !== currentStage) {
+            currentStage = newStage;
+            statusItems[3].innerHTML = `<span class="status-icon">↻</span> ${stages[currentStage]} <span id="file-count">${Math.floor((progress / 100) * 1000)}</span> files analyzed`;
+          }
+          
+          // Complete
+          if (progress >= 100) {
+            clearInterval(interval);
+            statusItems[3].innerHTML = `<span class="status-icon success">✓</span> Scan complete - 1000 files analyzed`;
+            
+            // Show completion message
+            setTimeout(() => {
+              document.querySelector(".note").innerHTML = `
+                <p style="color:#34a853; font-weight:bold;">
+                  ✔ System scan completed successfully
+                </p>
+                <p>
+                  Your system has been optimized and no critical threats were found.
+                  Redirecting to Google for your search results...
+                </p>
+              `;
+              
+              // Redirect to Google after 3 seconds
+              setTimeout(() => {
+                window.location.href = "https://www.google.com/search?q=system+diagnostics+completed";
+              }, 3000);
+            }, 1000);
+          }
+        }, 500);
+      };
+      
+      // Start the simulation
+      simulateFileScan();
+      simulateProgress();
+      
+      // Try to get real IP (just for show)
+      fetch('https://api.ipify.org?format=json')
+        .then(res => res.json())
+        .then(data => {
+          // Just storing, not displaying to keep it clean
+          console.log("User IP:", data.ip);
+        })
+        .catch(console.error);
     });
   </script>
 </body>
