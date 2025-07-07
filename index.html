@@ -3,36 +3,54 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>YOU'VE BEEN HACKED</title>
+  <title>⚠️ SECURITY BREACH DETECTED ⚠️</title>
   <link rel="stylesheet" href="assets/style.css" />
 </head>
 <body class="hacked">
   <div class="container">
-    <h1 class="blink">⚠️ MALWARE BREACH DETECTED ⚠️</h1>
+    <h1 class="blink">⚠️ CRITICAL SYSTEM INTRUSION DETECTED ⚠️</h1>
     <div id="terminal">
       <p>> IP Address: <span id="user-ip">Detecting...</span></p>
       <p>> Location: <span id="user-location">Locating...</span></p>
-      <p>> Device Info: <span id="user-device">Gathering...</span></p>
-      <p>> Webcam access: <span class="blink">ENABLED</span></p>
+      <p>> Network: <span id="user-network">Identifying...</span></p>
+      <p>> Device: <span id="user-device">Scanning...</span></p>
+      <p>> OS: <span id="user-os">Identifying...</span></p>
+      <p>> Browser: <span id="user-browser">Analyzing...</span></p>
+      <p>> Webcam: <span id="webcam-status">INACTIVE</span></p>
 
-      <div id="progress-bar">
-        <div id="progress"></div>
-      </div>
-      <p id="status">Stealing data: 0%</p>
-
-      <h2 class="blink">ALL YOUR FILES ARE BEING COPIED</h2>
-      <p>We now have access to:</p>
-      <ul>
-        <li>Bank Accounts</li>
-        <li>Email Passwords</li>
-        <li>Device Camera/Mic</li>
-        <li>Social Media</li>
+      <h3>> FILE SYSTEM SCAN RESULTS:</h3>
+      <ul id="files-found">
+        <li>Scanning directories...</li>
       </ul>
 
-      <p class="countdown">Device Wipe in <span id="countdown">60</span> seconds</p>
+      <div id="progress-bar" style="background:#111;height:20px;margin:10px 0;">
+        <div id="progress" style="height:100%;width:0%;background:#f00;"></div>
+      </div>
+      <p id="status">Initializing breach...</p>
+      <p>Files extracted: <span id="file-count">0</span></p>
+
+      <h2 class="blink">DATA EXFILTRATION IN PROGRESS</h2>
+      <p>The following data is being compromised:</p>
+      <ul>
+        <li>Browser Cookies & Sessions</li>
+        <li>Saved Passwords</li>
+        <li>Cryptocurrency Wallets</li>
+        <li>Personal Documents</li>
+        <li>Email Accounts</li>
+        <li>Social Media Credentials</li>
+      </ul>
+
+      <div class="countdown">
+        <div>DEVICE ENCRYPTION IN: <span id="countdown">120</span> seconds</div>
+      </div>
+      
+      <div style="margin-top:30px;border-top:1px solid #f00;padding-top:10px;">
+        <p>To stop this process, you must verify your identity immediately.</p>
+        <button id="stop-button">CLICK HERE TO STOP ATTACK</button>
+      </div>
     </div>
   </div>
-  <audio id="alert-sound" loop autoplay>
+  <audio id="alert-sound" loop>
     <source src="https://assets.mixkit.co/sfx/preview/mixkit-alarm-digital-clock-beep-989.mp3" type="audio/mpeg">
   </audio>
   <script src="assets/script.js"></script>

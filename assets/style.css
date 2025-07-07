@@ -1,93 +1,320 @@
+/* Base Styles */
 body {
-    font-family: 'Courier New', monospace;
+    font-family: 'Consolas', 'Courier New', monospace;
     background-color: #000;
     color: #0f0;
     margin: 0;
     padding: 20px;
     line-height: 1.6;
+    overflow-x: hidden;
 }
 
+/* Terminal Container */
 .container {
     max-width: 800px;
     margin: 0 auto;
     padding: 20px;
+    position: relative;
 }
 
-h1, h2, h3 {
+/* Typography */
+h1, h2, h3, h4 {
     color: #f00;
     text-align: center;
+    margin: 15px 0;
+    text-transform: uppercase;
 }
 
-.form-group {
-    margin-bottom: 15px;
+h1 {
+    font-size: 1.8em;
+    letter-spacing: 2px;
+    text-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
 }
 
-label {
-    display: block;
-    margin-bottom: 5px;
+h2 {
+    font-size: 1.4em;
+    border-bottom: 1px solid #f00;
+    padding-bottom: 10px;
+}
+
+h3 {
+    font-size: 1.2em;
+    text-align: left;
     color: #0f0;
+    margin: 20px 0 10px 0;
 }
 
-input[type="text"],
-input[type="password"],
-input[type="email"],
-input[type="tel"] {
-    width: 100%;
-    padding: 10px;
+/* Terminal Box */
+#terminal {
     background-color: #111;
-    border: 1px solid #0f0;
-    color: #0f0;
-    font-family: 'Courier New', monospace;
+    padding: 25px;
+    border: 1px solid #f00;
+    margin-top: 20px;
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
+    position: relative;
+    overflow: hidden;
 }
 
+#terminal::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #f00, #0f0, #00f, #f00);
+    animation: scanline 3s linear infinite;
+}
+
+/* Terminal Content */
+#terminal p {
+    margin: 12px 0;
+    padding: 0;
+    font-size: 0.95em;
+}
+
+#terminal ul {
+    margin: 15px 0;
+    padding-left: 25px;
+    list-style-type: none;
+}
+
+#terminal ul li {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 8px;
+}
+
+#terminal ul li::before {
+    content: ">";
+    position: absolute;
+    left: 0;
+    color: #f00;
+}
+
+/* Status Elements */
+.status-item {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.status-label {
+    min-width: 120px;
+    color: #0f0;
+}
+
+.status-value {
+    flex-grow: 1;
+    color: #f00;
+}
+
+/* Progress Bar */
+#progress-bar {
+    background-color: #111;
+    height: 20px;
+    margin: 15px 0;
+    border: 1px solid #f00;
+    position: relative;
+    overflow: hidden;
+}
+
+#progress {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #f00, #900);
+    transition: width 0.3s ease;
+    position: relative;
+}
+
+#progress::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0.1) 0%,
+        rgba(255, 255, 255, 0) 50%,
+        rgba(255, 255, 255, 0.1) 100%
+    );
+}
+
+/* Countdown Timer */
+.countdown {
+    background-color: rgba(255, 0, 0, 0.1);
+    padding: 15px;
+    border: 1px solid #f00;
+    margin: 25px 0;
+    text-align: center;
+    font-size: 1.3em;
+}
+
+.countdown span {
+    font-weight: bold;
+    color: #fff;
+}
+
+/* Buttons */
 button {
-    background-color: #f00;
+    background: linear-gradient(to bottom, #f00, #900);
     color: white;
     border: none;
-    padding: 10px 20px;
+    padding: 12px 25px;
     cursor: pointer;
     font-weight: bold;
     width: 100%;
-    margin-top: 20px;
+    margin: 25px 0 10px 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-family: 'Courier New', monospace;
+    font-size: 1.1em;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
 }
 
 button:hover {
-    background-color: #d00;
+    background: linear-gradient(to bottom, #f00, #600);
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
 }
 
+button::after {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -60%;
+    width: 50%;
+    height: 200%;
+    background: linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.3) 50%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    transform: rotate(30deg);
+    animation: shine 3s infinite;
+}
+
+/* Warning Boxes */
 .warning {
     border-left: 3px solid #f00;
-    padding-left: 10px;
-    margin-top: 20px;
+    padding: 10px 15px;
+    margin: 20px 0;
     color: #f00;
+    background-color: rgba(255, 0, 0, 0.05);
 }
 
-/* Hacked page styles */
+/* Animations */
+@keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0.3; }
+    100% { opacity: 1; }
+}
+
+@keyframes scanline {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+@keyframes shine {
+    0% { left: -60%; }
+    20% { left: 100%; }
+    100% { left: 100%; }
+}
+
+/* Glitch Effect */
+.glitch {
+    position: relative;
+}
+
+.glitch::before, .glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.8;
+}
+
+.glitch::before {
+    color: #0f0;
+    z-index: -1;
+    animation: glitch-effect 3s infinite;
+}
+
+.glitch::after {
+    color: #00f;
+    z-index: -2;
+    animation: glitch-effect 2s infinite reverse;
+}
+
+@keyframes glitch-effect {
+    0% { transform: translate(0); }
+    20% { transform: translate(-3px, 3px); }
+    40% { transform: translate(-3px, -3px); }
+    60% { transform: translate(3px, 3px); }
+    80% { transform: translate(3px, -3px); }
+    100% { transform: translate(0); }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+    
+    .container {
+        padding: 10px;
+    }
+    
+    #terminal {
+        padding: 15px;
+    }
+    
+    h1 {
+        font-size: 1.4em;
+    }
+    
+    .status-item {
+        flex-direction: column;
+    }
+    
+    .status-label {
+        margin-bottom: 5px;
+    }
+}
+
+/* Hacked Page Specific */
 body.hacked {
     background-color: #000;
     color: #f00;
+    animation: flicker 0.1s infinite alternate;
 }
 
-#terminal {
-    background-color: #111;
-    padding: 20px;
-    border: 1px solid #f00;
-    margin-top: 20px;
+@keyframes flicker {
+    0% { background-color: #000; }
+    10% { background-color: #0f0000; }
+    20% { background-color: #000; }
+    30% { background-color: #0f0000; }
+    40% { background-color: #000; }
+    50% { background-color: #0f0000; }
+    60% { background-color: #000; }
+    70% { background-color: #0f0000; }
+    80% { background-color: #000; }
+    90% { background-color: #0f0000; }
+    100% { background-color: #000; }
 }
 
-.countdown {
-    text-align: center;
-    font-size: 1.5em;
-    margin-top: 30px;
-    color: #f00;
+/* Terminal Cursor Effect */
+.typewriter {
+    border-right: 3px solid #f00;
+    animation: blink-caret 0.75s step-end infinite;
 }
 
-.blink {
-    animation: blink 0.5s infinite;
-}
-
-@keyframes blink {
-    0% { opacity: 1; }
-    50% { opacity: 0; }
-    100% { opacity: 1; }
+@keyframes blink-caret {
+    from, to { border-color: transparent; }
+    50% { border-color: #f00; }
 }
