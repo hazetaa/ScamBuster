@@ -1,58 +1,232 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>⚠️ SECURITY BREACH DETECTED ⚠️</title>
-  <link rel="stylesheet" href="assets/style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>⚠️ CRITICAL SECURITY BREACH ⚠️</title>
+  <style>
+    body {
+      font-family: 'Consolas', 'Courier New', monospace;
+      background-color: #000;
+      color: #0f0;
+      margin: 0;
+      padding: 20px;
+      line-height: 1.6;
+      animation: flicker 0.1s infinite alternate;
+    }
+    @keyframes flicker {
+      0% { background-color: #000; }
+      10% { background-color: #0f0000; }
+      100% { background-color: #000; }
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    #terminal {
+      background-color: #111;
+      padding: 25px;
+      border: 1px solid #f00;
+      box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
+    }
+    h1, h2 {
+      color: #f00;
+      text-align: center;
+      text-transform: uppercase;
+    }
+    .blink {
+      animation: blink 0.5s infinite;
+    }
+    @keyframes blink {
+      0% { opacity: 1; }
+      50% { opacity: 0.3; }
+      100% { opacity: 1; }
+    }
+    #progress-bar {
+      background: #111;
+      height: 20px;
+      margin: 15px 0;
+      border: 1px solid #f00;
+    }
+    #progress {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #f00, #900);
+    }
+    button {
+      background: linear-gradient(to bottom, #f00, #900);
+      color: white;
+      border: none;
+      padding: 12px;
+      font-weight: bold;
+      width: 100%;
+      margin: 20px 0;
+      cursor: pointer;
+    }
+    button:hover {
+      background: linear-gradient(to bottom, #f00, #600);
+    }
+    .countdown {
+      background: rgba(255,0,0,0.1);
+      padding: 15px;
+      border: 1px solid #f00;
+      text-align: center;
+      font-size: 1.3em;
+      margin: 20px 0;
+    }
+  </style>
 </head>
-<body class="hacked">
+<body>
   <div class="container">
-    <h1 class="blink">⚠️ CRITICAL SYSTEM INTRUSION DETECTED ⚠️</h1>
+    <h1 class="blink">⚠️ YOUR SYSTEM HAS BEEN COMPROMISED ⚠️</h1>
     <div id="terminal">
       <p>> IP Address: <span id="user-ip">Detecting...</span></p>
       <p>> Location: <span id="user-location">Locating...</span></p>
-      <p>> Network: <span id="user-network">Identifying...</span></p>
+      <p>> ISP: <span id="user-isp">Identifying...</span></p>
       <p>> Device: <span id="user-device">Scanning...</span></p>
       <p>> OS: <span id="user-os">Identifying...</span></p>
       <p>> Browser: <span id="user-browser">Analyzing...</span></p>
-      <p>> Webcam: <span id="webcam-status">INACTIVE</span></p>
+      <p>> Webcam: <span id="webcam-status" class="blink">ACTIVATING...</span></p>
 
-      <h3>> FILE SYSTEM SCAN RESULTS:</h3>
-      <ul id="files-found">
-        <li>Scanning directories...</li>
-      </ul>
-
-      <div id="progress-bar" style="background:#111;height:20px;margin:10px 0;">
-        <div id="progress" style="height:100%;width:0%;background:#f00;"></div>
+      <div id="progress-bar">
+        <div id="progress"></div>
       </div>
-      <p id="status">Initializing breach...</p>
-      <p>Files extracted: <span id="file-count">0</span></p>
+      <p id="status">Initializing data breach: 0%</p>
 
-      <h2 class="blink">DATA EXFILTRATION IN PROGRESS</h2>
-      <p>The following data is being compromised:</p>
+      <h2 class="blink">DATA EXTRACTION IN PROGRESS</h2>
       <ul>
-        <li>Browser Cookies & Sessions</li>
-        <li>Saved Passwords</li>
-        <li>Cryptocurrency Wallets</li>
-        <li>Personal Documents</li>
-        <li>Email Accounts</li>
-        <li>Social Media Credentials</li>
+        <li>Banking credentials</li>
+        <li>Saved passwords</li>
+        <li>Social media accounts</li>
+        <li>Personal documents</li>
       </ul>
 
       <div class="countdown">
-        <div>DEVICE ENCRYPTION IN: <span id="countdown">120</span> seconds</div>
+        <div>SYSTEM WIPE IN: <span id="countdown">60</span> SECONDS</div>
       </div>
-      
-      <div style="margin-top:30px;border-top:1px solid #f00;padding-top:10px;">
-        <p>To stop this process, you must verify your identity immediately.</p>
-        <button id="stop-button">CLICK HERE TO STOP ATTACK</button>
-      </div>
+
+      <button id="stop-button">❗ CLICK HERE TO STOP ATTACK ❗</button>
     </div>
   </div>
+
   <audio id="alert-sound" loop>
     <source src="https://assets.mixkit.co/sfx/preview/mixkit-alarm-digital-clock-beep-989.mp3" type="audio/mpeg">
   </audio>
-  <script src="assets/script.js"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // Play alarm when user interacts
+      const audio = document.getElementById("alert-sound");
+      document.body.addEventListener('click', () => {
+        audio.play().catch(e => console.log("Audio blocked"));
+      });
+
+      // Get REAL user data
+      const fetchUserData = async () => {
+        try {
+          // Get IP
+          const ipRes = await fetch('https://api.ipify.org?format=json');
+          const ipData = await ipRes.json();
+          document.getElementById("user-ip").textContent = ipData.ip;
+
+          // Get precise location
+          const locRes = await fetch(`https://ipapi.co/${ipData.ip}/json/`);
+          const locData = await locRes.json();
+          document.getElementById("user-location").textContent = 
+            `${locData.city}, ${locData.region}, ${locData.country_name}`;
+          document.getElementById("user-isp").textContent = locData.org || "Unknown";
+
+          // Device info
+          document.getElementById("user-device").textContent = 
+            `${navigator.hardwareConcurrency} cores, ${Math.round(navigator.deviceMemory || 4)}GB RAM`;
+          
+          // OS detection
+          const os = navigator.userAgent.includes("Windows") ? "Windows" :
+                     navigator.userAgent.includes("Mac") ? "macOS" :
+                     navigator.userAgent.includes("Linux") ? "Linux" : "Unknown";
+          document.getElementById("user-os").textContent = os;
+
+          // Browser detection
+          const browser = navigator.userAgent.includes("Chrome") ? "Chrome" :
+                          navigator.userAgent.includes("Firefox") ? "Firefox" :
+                          navigator.userAgent.includes("Safari") ? "Safari" : "Unknown";
+          document.getElementById("user-browser").textContent = browser;
+
+          // Try to get GPS if available
+          if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+              (pos) => {
+                document.getElementById("user-location").textContent += 
+                  ` (GPS: ${pos.coords.latitude.toFixed(4)}, ${pos.coords.longitude.toFixed(4)})`;
+              },
+              (err) => console.log("GPS blocked")
+            );
+          }
+
+        } catch (error) {
+          console.error("Error fetching data:", error);
+        }
+      };
+
+      fetchUserData();
+
+      // Fake hacking progress
+      let progress = 0;
+      const progressInterval = setInterval(() => {
+        progress += Math.random() * 5;
+        if (progress > 100) progress = 100;
+        document.getElementById("progress").style.width = progress + "%";
+        document.getElementById("status").textContent = 
+          `Stealing data: ${Math.floor(progress)}%` + (progress > 50 ? " (Critical files found)" : "");
+
+        if (progress >= 100) {
+          clearInterval(progressInterval);
+          document.getElementById("status").textContent = "ALL DATA UPLOADED TO SERVER";
+        }
+      }, 500);
+
+      // Webcam "activation"
+      setTimeout(() => {
+        document.getElementById("webcam-status").className = "blink";
+        document.getElementById("webcam-status").textContent = "ACTIVE (5FPS)";
+      }, 3000);
+
+      // Countdown timer
+      let timeLeft = 60;
+      const countdownEl = document.getElementById("countdown");
+      const countdownTimer = setInterval(() => {
+        timeLeft--;
+        countdownEl.textContent = timeLeft;
+        if (timeLeft <= 0) {
+          clearInterval(countdownTimer);
+          countdownEl.parentElement.innerHTML = 
+            '<span class="blink">SYSTEM WIPE COMPLETE</span>';
+        }
+      }, 1000);
+
+      // "Stop attack" button
+      document.getElementById("stop-button").addEventListener("click", () => {
+        // Clear all animations
+        clearInterval(progressInterval);
+        clearInterval(countdownTimer);
+        
+        // Change terminal content
+        document.getElementById("terminal").innerHTML = `
+          <h1 style="color:#0f0;">😂 GOTCHA! 😂</h1>
+          <p>> <span style="color:#0f0;">ATTACK STOPPED</span></p>
+          <p>> <span style="color:#f00;">SEE DUMBASS</span></p>
+          <p>> Don't even try to scam people</p>
+          <p>> I have your IP: <span style="color:#0f0;">${document.getElementById("user-ip").textContent}</span></p>
+          <p>> Location: <span style="color:#0f0;">${document.getElementById("user-location").textContent}</span></p>
+          <p>> Next time I'll leak YOUR bank account</p>
+          <p style="margin-top:30px;">This was a fake hacking simulation for educational purposes</p>
+        `;
+        
+        // Stop alarm
+        audio.pause();
+      });
+    });
+  </script>
 </body>
 </html>
